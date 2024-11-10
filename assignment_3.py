@@ -28,19 +28,62 @@ class Graph(object):
         for i, v in enumerate(self.vertices):
             print(v, self.matrix[i])
 
-    def transpose(self):
-        # TODO remove the following print message once method is implemented
-        print("Not implemented yet!")
 
+    #transpose 
+    def transpose(self):
+        n = len(self.matrix)
+        transposed_matrix = [[self.matrix[j][i] for j in range(n)] for i in range(n)]
+        self.matrix = transposed_matrix
+
+
+    #in_degree
     def in_degree(self):
         print("In degree of the graph:")
         # TODO remove the following print message once method is implemented
-        print("Not implemented yet!")
+        #init dict to track degree chnage
+        in_degree_track = { i : 0 for i in range(len(self.matrix))}
+        
+        #traverse the matrix to countt the degrees
+        for i in range(len(self.matrix)):
+            for j in range(len(self.matrix)):
+                if self.matrix[j][i] != 0:
+                    in_degree_track[i] += 1 
+        
+        #print the degrees
+        for vertex, degree in in_degree_track.items():
+            print(f'Vertex: {self.vertices[vertex]} Degree: {degree}')
+        
+        
+        print("Not implemented yet! in_degree")
 
+    #in_degree
     def out_degree(self):
         print("Out degree of the graph:")
         # TODO remove the following print message once method is implemented
-        print("Not implemented yet!")
+        
+        #init dict here to same as in_degree
+        out_degree_track = {i: 0 for i in range(len(self.matrix))}
+        
+        #traver #traverse the matrix to countt the degrees
+        for i in range(len(self.matrix)):
+            for j in range(len(self.matrix)):
+                if self.matrix[i][j] != 0:
+                    out_degree_track[i] += 1
+                    
+        for vertex, degree in out_degree_track.items():
+            print(f'Vertex: {self.vertices[vertex]} Degree: {degree}')
+        
+        print("Not implemented yet!  out_degree")
+
+
+
+
+
+
+
+
+
+
 
     def dfs_on_graph(self):
         # TODO remove the following print message once method is implemented
@@ -68,6 +111,9 @@ class Graph(object):
         # TODO: invoke print_d_and_pi in each iteration to print out the value.
         # self.print_d_and_pi()
 
+
+
+#conditions 
     def print_d_and_pi(self, iteration, d, pi):
         assert((len(d) == len(self.vertices)) and
                (len(pi) == len(self.vertices)))
@@ -88,8 +134,9 @@ class Graph(object):
         assert((len(degree) == len(self.vertices)))
         for i, v in enumerate(self.vertices):
             print("Vertex: {0}\tDegree: {1}".format(v, degree[i]))
-
-
+            
+            
+   
 def main():
     # Thoroughly test your program and produce useful output.
     # Q1 and Q2
