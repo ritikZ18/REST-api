@@ -29,11 +29,28 @@ class Graph(object):
             print(v, self.matrix[i])
 
 
-    #transpose 
+    #transpose of matrix
     def transpose(self):
-        n = len(self.matrix)
-        transposed_matrix = [[self.matrix[j][i] for j in range(n)] for i in range(n)]
+        
+        #[i][j] is swapped by [j][i]
+        #store new transpose in new matrix
+        print('Transposed Matrix: ')
+        transposed_matrix = [[0]*len(self.matrix) for _ in range(len(self.matrix))]
+        
+        #traverse matrix to edges 
+        for i in range(len(self.matrix)):
+            for j in range(len(self.matrix)):
+                transposed_matrix[j][i] = self.matrix[i][j]
+                
+        #update the existing matric with transpose one
         self.matrix = transposed_matrix
+        
+        
+        # #transposed done with List compresion (swaping the indices)
+        # print('Transposed Matrix M-2')
+        # n = len(self.matrix)
+        # transposed_matrix = [[self.matrix[j][i] for j in range(n)] for i in range(n)]
+        # self.matrix = transposed_matrix
 
 
     #in_degree
@@ -56,7 +73,7 @@ class Graph(object):
         
         print("Not implemented yet! in_degree")
 
-    #in_degree
+    #out_degree
     def out_degree(self):
         print("Out degree of the graph:")
         # TODO remove the following print message once method is implemented
