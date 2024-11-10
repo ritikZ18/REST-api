@@ -161,8 +161,6 @@ def main():
     graph.display()
     graph.transpose()
     graph.display()
-    graph.transpose()
-    graph.display()
     graph.in_degree()
     graph.out_degree()
     graph.print_d_and_pi(1, [1, sys.maxsize], [2, None])
