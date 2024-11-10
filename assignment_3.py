@@ -120,30 +120,8 @@ class Graph(object):
             if not visited[curr_node]:
                 dfs_visited(curr_node)
         
-        self.print_discover_and_finish_time(discovered, finished)
-    #    print(f'Current Node: {curr_node} Discovered Node: {curr_node} Finished Node: {curr_node}')
-        
-        print("Not implemented yet!")
-        
-        
-        
-        
-
         # TODO: invoke print_discover_and_finish_time to print out the final
-        # result.
-        # self.print_discover_and_finish_time()
-
-
-
-
-
-
-
-
-
-
-
-
+        self.print_discover_and_finish_time(discovered, finished)
 
 
 
@@ -153,9 +131,42 @@ class Graph(object):
 
     def prim(self, root):
         # TODO remove the following print message once method is implemented
-        print("Not implemented yet!")
+        total_vertice = len(self.matrix)
+        d= [float('inf')] * total_vertice
+        pi = [None] * total_vertice
+        d[self.vertices.index(root)] = 0 #distance of root vertex to 0
+
+        visited = [False] * total_vertice
+        
+        self.print_d_and_pi('Initial', d, pi)
+
+        for iterations in range(total_vertice):
+          
+            min_distance = float('inf')
+            curr_vertex = -1
+           
+            for vertex in range(total_vertice):
+               if not visited[vertex] and d[vertex] < min_distance:
+                   min_distance = d[vertex]
+                   curr_vertex = vertex
+
+            visited[curr_vertex] = True #curr vertex visited
+            self.print_d_and_pi(iterations, d, pi)
+        
+            #updating adj vertices distances
+            for candidate_vertex in range(total_vertice):
+                if self.matrix[curr_vertex][candidate_vertex] != 0 and not visited[candidate_vertex]:
+                    weight = self.matrix[curr_vertex][candidate_vertex]
+                    if weight < d[candidate_vertex]:
+                        d[candidate_vertex] = weight
+                        pi[candidate_vertex] = self.vertices[curr_vertex]     
+        
+        
+        
         # TODO: invoke print_d_and_pi in each iteration to print out the value.
-        # self.print_d_and_pi()
+        self.print_d_and_pi('Final', d, pi)
+        
+        
 
     def bellman_ford(self, source):
         # TODO remove the following print message once method is implemented
