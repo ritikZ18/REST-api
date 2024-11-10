@@ -157,6 +157,7 @@ class Graph(object):
 def main():
     # Thoroughly test your program and produce useful output.
     # Q1 and Q2
+    
     graph = Graph(['1', '2'], [('1', '2', 1)])
     graph.display()
     graph.transpose()
