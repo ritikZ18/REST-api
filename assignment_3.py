@@ -94,21 +94,62 @@ class Graph(object):
 
 
 
-
-
-
-
-
-
-
-
     def dfs_on_graph(self):
         # TODO remove the following print message once method is implemented
+        time       = 0 
+        discovered = [-1] *len(self.matrix)
+        finished   = [-1] *len(self.matrix)
+        visited    = [False] *len(self.matrix)
+        
+        
+        def dfs_visited(curr_node):
+            
+            nonlocal time 
+            visited[curr_node] = True
+            time += 1
+            discovered[curr_node] = time
+            for next_node in range(len(self.matrix[curr_node])):
+                if self.matrix[curr_node][next_node] != 0 and not visited[next_node]:
+                    dfs_visited(next_node)
+                    
+            time += 1 
+            finished[curr_node] = time #chnange
+            
+            
+        for curr_node in range(len(self.matrix)):
+            if not visited[curr_node]:
+                dfs_visited(curr_node)
+        
+        self.print_discover_and_finish_time(discovered, finished)
+    #    print(f'Current Node: {curr_node} Discovered Node: {curr_node} Finished Node: {curr_node}')
+        
         print("Not implemented yet!")
+        
+        
+        
+        
 
         # TODO: invoke print_discover_and_finish_time to print out the final
         # result.
         # self.print_discover_and_finish_time()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def prim(self, root):
         # TODO remove the following print message once method is implemented
