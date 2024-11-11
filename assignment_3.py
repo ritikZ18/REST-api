@@ -34,7 +34,7 @@ class Graph(object):
         
         #[i][j] is swapped by [j][i]
         #store new transpose in new matrix
-        print('Transposed Matrix: ')
+        print("\n--- Transposed Matrix ---")
         transposed_matrix = [[0]*len(self.matrix) for _ in range(len(self.matrix))]
         
         #traverse matrix to edges 
@@ -55,7 +55,9 @@ class Graph(object):
 
     #in_degree
     def in_degree(self):
-        print("In degree of the graph:")
+        
+        
+        print("\n---In degree of the graph---")
         # TODO remove the following print message once method is implemented
         #init dict to track degree chnage
         in_degree_track = { i : 0 for i in range(len(self.matrix))}
@@ -70,12 +72,10 @@ class Graph(object):
         for vertex, degree in in_degree_track.items():
             print(f'Vertex: {self.vertices[vertex]} Degree: {degree}')
         
-        
-        print("Not implemented yet! in_degree")
-
+      
     #out_degree
     def out_degree(self):
-        print("Out degree of the graph:")
+        print("\n---Out-degree of the graph---")
         # TODO remove the following print message once method is implemented
         
         #init dict here to same as in_degree
@@ -90,8 +90,6 @@ class Graph(object):
         for vertex, degree in out_degree_track.items():
             print(f'Vertex: {self.vertices[vertex]} Degree: {degree}')
         
-        print("Not implemented yet!  out_degree")
-
 
 
     def dfs_on_graph(self):
@@ -168,11 +166,38 @@ class Graph(object):
         
         
 
+
+
+
     def bellman_ford(self, source):
         # TODO remove the following print message once method is implemented
-        print("Not implemented yet!")
-        # TODO: invoke print_d_and_pi in each iteration to print out the value.
-        # self.print_d_and_pi()
+        
+        total_vertices = len(self.matrix)
+        d = [float('inf')] * total_vertices
+        pi = [None] * total_vertices
+        d[self.vertices.index(source)]  =  0
+        
+        self.print_d_and_pi('Initial', d, pi)
+        
+        for i in range(total_vertices-1):
+            for u, v, weight in self.edges:
+                u_index = self.vertices.index(u)
+                v_index = self.vertices.index(v)
+               
+                if d[u_index] != float('inf') and d[u_index] + weight < d[v_index]:
+                     d[v_index] = d[u_index] + weight
+                     pi[v_index] = u
+            
+            self.print_d_and_pi(i, d, pi)
+        
+        self.print_d_and_pi('final', d, pi)
+        
+        
+        
+        
+        
+        
+        
 
     def dijkstra(self, source):
         # TODO remove the following print message once method is implemented
@@ -182,7 +207,8 @@ class Graph(object):
 
 
 
-#conditions 
+    #conditions  DO NOT MODIFY <--STARTS HERE--> 
+
     def print_d_and_pi(self, iteration, d, pi):
         assert((len(d) == len(self.vertices)) and
                (len(pi) == len(self.vertices)))
@@ -221,6 +247,7 @@ def main():
     graph.print_discover_and_finish_time([0, 2], [1, 3])
 
     # Q3
+    print("\n--- DFS Traversal ---")
     graph = Graph(['q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
                   [('q', 's', 1),
                    ('s', 'v', 1),
@@ -240,6 +267,7 @@ def main():
     graph.dfs_on_graph()
 
     # Q4 - Prim
+    print("\n--- Prim's Algorithm ---")
     graph = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
                   [('A', 'H', 6),
                    ('H', 'A', 6),
@@ -264,6 +292,7 @@ def main():
     graph.prim('G')
 
     # Q5
+    print("\n--- Bellman Ford ---")
     graph = Graph(['s', 't', 'x', 'y', 'z'],
                   [('t', 'x', 5),
                    ('t', 'y', 8),
@@ -278,6 +307,7 @@ def main():
     graph.bellman_ford('z')
 
     # Q5 alternate
+    print("\n--- Bellman Ford ALternate ---")
     graph = Graph(['s', 't', 'x', 'y', 'z'],
                   [('t', 'x', 5),
                    ('t', 'y', 8),
@@ -292,6 +322,7 @@ def main():
     graph.bellman_ford('s')
 
     # Q6
+    print("\n--- Djikstra's Algorithm ---")
     graph = Graph(['s', 't', 'x', 'y', 'z'],
                   [('s', 't', 3),
                    ('s', 'y', 5),
@@ -304,6 +335,9 @@ def main():
                    ('z', 's', 3),
                    ('z', 'x', 7)])
     graph.dijkstra('s')
+
+
+    #conditions  DO NOT MODIFY <-- ENDS HERE -->
 
 
 if __name__ == '__main__':
