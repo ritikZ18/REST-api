@@ -2,6 +2,7 @@
 """
 SER501 Assignment 3 scaffolding code
 created by: Xiangyu Guo
+edited by: Ritik Zambre --> 🤣
 """
 import sys
 # =============================================================================
@@ -34,7 +35,7 @@ class Graph(object):
         
         #[i][j] is swapped by [j][i]
         #store new transpose in new matrix
-        print("\n--- Transposed Matrix ---")
+        print("\n--- Q2. Transposed Matrix ---")
         transposed_matrix = [[0]*len(self.matrix) for _ in range(len(self.matrix))]
         
         #traverse matrix to edges 
@@ -57,7 +58,7 @@ class Graph(object):
     def in_degree(self):
         
         
-        print("\n---In degree of the graph---")
+        print("\n--- Q1. In-degree graph ---")
         # TODO remove the following print message once method is implemented
         #init dict to track degree chnage
         in_degree_track = { i : 0 for i in range(len(self.matrix))}
@@ -75,7 +76,7 @@ class Graph(object):
       
     #out_degree
     def out_degree(self):
-        print("\n---Out-degree of the graph---")
+        print("\n--- Q1. Out-degree graph---")
         # TODO remove the following print message once method is implemented
         
         #init dict here to same as in_degree
@@ -262,17 +263,21 @@ def main():
     # Q1 and Q2
     
     graph = Graph(['1', '2'], [('1', '2', 1)])
+    print('\n --- Example Matrix  ---\n')
     graph.display()
     graph.transpose()
     graph.display()
     graph.in_degree()
     graph.out_degree()
+    
     graph.print_d_and_pi(1, [1, sys.maxsize], [2, None])
+    
     graph.print_degree([1, 0])
+    
     graph.print_discover_and_finish_time([0, 2], [1, 3])
 
     # Q3
-    print("\n--- DFS Traversal ---")
+    print("\n--- Q3. DFS Traversal ---")
     graph = Graph(['q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
                   [('q', 's', 1),
                    ('s', 'v', 1),
@@ -288,11 +293,11 @@ def main():
                    ('r', 'y', 1),
                    ('r', 'u', 1),
                    ('u', 'y', 1)])
-    graph.display()
+    # graph.display()
     graph.dfs_on_graph()
 
     # Q4 - Prim
-    print("\n--- Prim's Algorithm ---")
+    print("\n--- Q4. Prim's Algorithm ---")
     graph = Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
                   [('A', 'H', 6),
                    ('H', 'A', 6),
@@ -317,7 +322,7 @@ def main():
     graph.prim('G')
 
     # Q5
-    print("\n--- Bellman Ford ---")
+    print("\n--- Q5. Bellman Ford ---")
     graph = Graph(['s', 't', 'x', 'y', 'z'],
                   [('t', 'x', 5),
                    ('t', 'y', 8),
@@ -332,7 +337,7 @@ def main():
     graph.bellman_ford('z')
 
     # Q5 alternate
-    print("\n--- Bellman Ford ALternate ---")
+    print("\n--- Q5. Bellman Ford ALternate ---")
     graph = Graph(['s', 't', 'x', 'y', 'z'],
                   [('t', 'x', 5),
                    ('t', 'y', 8),
@@ -347,7 +352,7 @@ def main():
     graph.bellman_ford('s')
 
     # Q6
-    print("\n--- Djikstra's Algorithm ---")
+    print("\n--- Q6. Djikstra's Algorithm ---")
     graph = Graph(['s', 't', 'x', 'y', 'z'],
                   [('s', 't', 3),
                    ('s', 'y', 5),
