@@ -200,13 +200,38 @@ class Graph(object):
         
 
     def dijkstra(self, source):
-        # TODO remove the following print message once method is implemented
-        print("Not implemented yet!")
-        # TODO: invoke print_d_and_pi in each iteration to print out the value.
-        # self.print_d_and_pi()
+        total_vertices = len(self.matrix)
+        d = [float('inf')] * total_vertices
+        pi = [None] * total_vertices
+        d[self.vertices.index(source)]  =  0
+        visited = [False] * total_vertices
+        
+        self.print_d_and_pi('Initial', d, pi)
+        
+        for iteration in range(total_vertices):
+            min_distance = float('inf') 
+            curr_vertex = -1
+            for i in range(total_vertices):
+                if not visited[i] and d[i] < min_distance:
+                    min_distance = d[i]
+                    curr_vertex = i
 
+            #no vertex confdition
+            if curr_vertex == -1:
+                break
 
+            visited[curr_vertex] = True
 
+            self.print_d_and_pi(iteration, d, pi)
+
+            for candidate_vertex in range(total_vertices):
+                if(self.matrix[curr_vertex][candidate_vertex] != 0 and not visited[candidate_vertex] and d[curr_vertex] + self.matrix[curr_vertex][candidate_vertex] < d[candidate_vertex]):
+                    d[candidate_vertex] = d[curr_vertex] + self.matrix[curr_vertex][candidate_vertex]
+                    pi[candidate_vertex] = curr_vertex
+                    #self.print_d_and_pi(curr_vertex,d, pi)
+
+        
+        # self.print_d_and_pi('Final', d, pi)
     #conditions  DO NOT MODIFY <--STARTS HERE--> 
 
     def print_d_and_pi(self, iteration, d, pi):
