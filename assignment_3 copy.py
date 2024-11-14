@@ -58,6 +58,11 @@ class Graph(object):
 
 
     # in_degree
+    
+    '''
+    
+    
+    '''
     def in_degree(self):
 
         print("\n--- Q1. In-degree graph ---")
